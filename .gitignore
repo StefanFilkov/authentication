@@ -19,6 +19,13 @@ target/
 *.iml
 *.ipr
 
+
+*/.flatten-pom.xml
+.flattened-pom.xml
+src/main/resources/env.properties
+
+
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
