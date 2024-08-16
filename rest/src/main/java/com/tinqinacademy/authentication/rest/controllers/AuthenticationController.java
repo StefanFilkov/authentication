@@ -6,11 +6,11 @@ import com.tinqinacademy.authentication.api.operations.login.LogInOperation;
 import com.tinqinacademy.authentication.api.operations.registeruser.RegisterUserInput;
 import com.tinqinacademy.authentication.api.operations.registeruser.RegisterUserOperation;
 
+import com.tinqinacademy.authentication.api.urls.URLMappings;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
 public class AuthenticationController extends BaseController {
     private final RegisterUserOperation registerUserOperation;
     private final LogInOperation logInOperation;
@@ -23,12 +23,12 @@ public class AuthenticationController extends BaseController {
     }
 
 
-    @PostMapping("/register")
+    @PostMapping(URLMappings.REGISTER)
     public ResponseEntity<?> registerUser(@RequestBody RegisterUserInput input) {
         return handleResult(registerUserOperation.process(input));
     }
 
-    @PostMapping("/login")
+    @PostMapping(URLMappings.LOGIN)
         public ResponseEntity<?> login(@RequestBody LogInInput input) {
         return handleResult(logInOperation.process(input));
     }
