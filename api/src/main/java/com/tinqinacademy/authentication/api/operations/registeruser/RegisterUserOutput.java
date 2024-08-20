@@ -5,10 +5,8 @@ import lombok.*;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString
 public class RegisterUserOutput implements OperationOutput {
-    String token;
 }

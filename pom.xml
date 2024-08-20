@@ -10,7 +10,7 @@
 
     <packaging>pom</packaging>
 
-    <groupId>com.tinquinacademy.authentication</groupId>
+    <groupId>com.tinqinacademy.authentication</groupId>
     <artifactId>authentication</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -37,11 +37,6 @@
         </dependency>
 
 <!--    mail sender-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>6.1.5</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

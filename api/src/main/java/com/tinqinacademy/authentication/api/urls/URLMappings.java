@@ -10,5 +10,6 @@ public class URLMappings {
     public static final String PROMOTE = "/auth/promote";
 
     public static final String DEMOTE = "/auth/demote";
+    public static final String VALIDATE_TOKEN = "/auth/validate-token";
 
 }

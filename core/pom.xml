@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.tinquinacademy.authentication</groupId>
+        <groupId>com.tinqinacademy.authentication</groupId>
         <artifactId>authentication</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -14,18 +14,31 @@
     <version>0.0.1-SNAPSHOT</version>
     <dependencies>
         <dependency>
-            <groupId>com.tinquinacademy.authentication</groupId>
+            <groupId>com.tinqinacademy.authentication</groupId>
             <artifactId>api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
 
         </dependency>
         <dependency>
-            <groupId>com.tinquinacademy.authentication</groupId>
+            <groupId>com.tinqinacademy.authentication</groupId>
             <artifactId>persistence</artifactId>
             <version>0.0.1-SNAPSHOT</version>
 
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <compilerArgs>--enable-preview</compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
