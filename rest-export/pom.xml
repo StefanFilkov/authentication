@@ -5,13 +5,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.tinquinacademy.authentication</groupId>
+        <groupId>com.tinqinacademy.authentication</groupId>
         <artifactId>authentication</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>rest-export</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.tinqinacademy.authentication</groupId>
+            <artifactId>api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+
+        </dependency>
+
+    </dependencies>
 
 
 </project>

@@ -8,20 +8,19 @@ import java.util.Collections;
 
 public class CustomToken extends AbstractAuthenticationToken {
     private UserPrincipal userPrincipal;
-    private String token;
 
     public CustomToken(UserPrincipal userPrincipal, String token) {
         super(Collections.singletonList(new SimpleGrantedAuthority(String.format("ROLE_%s", userPrincipal.getRole()))));
         super.setAuthenticated(true);
 
         this.userPrincipal = userPrincipal;
-        this.token = token;
+
 
     }
 
     @Override
     public Object getCredentials() {
-        return token;
+        return null;
     }
 
     @Override

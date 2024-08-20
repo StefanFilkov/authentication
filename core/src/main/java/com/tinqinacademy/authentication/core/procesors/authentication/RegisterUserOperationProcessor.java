@@ -17,6 +17,8 @@ import io.vavr.control.Try;
 import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,13 +30,15 @@ public class RegisterUserOperationProcessor extends BaseOperationProcessor imple
     private final UserRepository userRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
+    private final JavaMailSender getJavaMailSender;
 
 
-    protected RegisterUserOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper, UserRepository userRepository, JwtService jwtService, PasswordEncoder passwordEncoder) {
+    protected RegisterUserOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper, UserRepository userRepository, JwtService jwtService, PasswordEncoder passwordEncoder, JavaMailSender getJavaMailSender) {
         super(conversionService, validator, errorMapper);
         this.userRepository = userRepository;
         this.jwtService = jwtService;
         this.passwordEncoder = passwordEncoder;
+        this.getJavaMailSender = getJavaMailSender;
     }
 
     @Override
@@ -54,9 +58,16 @@ public class RegisterUserOperationProcessor extends BaseOperationProcessor imple
                         userRepository.save(newUser);
                         String token = jwtService.generateToken(newUser);
 
-                        return RegisterUserOutput.builder()
-                                .token(token)
+                        RegisterUserOutput result = RegisterUserOutput.builder()
                                 .build();
+
+                        SimpleMailMessage simpleMessage = new SimpleMailMessage();
+                        simpleMessage.setText("Verify your email: ");
+                        simpleMessage.setTo(input.getEmail());
+                        getJavaMailSender.send(simpleMessage);
+
+                        log.info("End of Register with result: {}", result);
+                        return result;
 
                     })
                     .toEither()

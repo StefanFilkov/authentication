@@ -10,4 +10,5 @@ import lombok.*;
 public class UserPrincipal {
     private String userId;
     private String role;
+    private String username;
 }

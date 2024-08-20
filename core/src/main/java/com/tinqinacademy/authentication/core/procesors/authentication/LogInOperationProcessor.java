@@ -16,7 +16,10 @@ import io.vavr.control.Either;
 import io.vavr.control.Try;
 import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,11 +33,18 @@ public class LogInOperationProcessor extends BaseOperationProcessor implements L
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
-    protected LogInOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper, UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
+
+    protected LogInOperationProcessor(ConversionService conversionService,
+                                      Validator validator,
+                                      ErrorMapper errorMapper,
+                                      UserRepository userRepository,
+                                      PasswordEncoder passwordEncoder,
+                                      JwtService jwtService) {
         super(conversionService, validator, errorMapper);
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
+
     }
 
     @Override
@@ -52,6 +62,8 @@ public class LogInOperationProcessor extends BaseOperationProcessor implements L
                     if(!passwordEncoder.matches(input.getPassword(), user.getPassword())){
                         throw new InvalidLoginException();
                     }
+
+
 
                     String userToken = jwtService.generateToken(user);
 

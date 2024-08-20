@@ -14,7 +14,7 @@ public class RegisterUserInputToUserBuilder implements Converter<RegisterUserInp
                 .email(source.getEmail())
                 .password(source.getPassword())
                 .name(source.getUsername())
-                .role(Role.USER);
+                .role(Role.ROLE_USER);
 
     }
 }
